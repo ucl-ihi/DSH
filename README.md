@@ -16,6 +16,7 @@ In an email from August 21st 2019 Anthony Peacock, the Head of Windows Infrastru
 >
 >Please review the packages that are available to you, if you don’t find what you are looking for IAO's/IAA's may request new packages by completing the online Data Safe Haven Software Request form:
 >[https://ucl.my.salesforce.com/?startURL=/apex/bmcservicedesk__ssredirect?type=sr%26id=a3S0J0000026ANVUA2](https://ucl.my.salesforce.com/?startURL=/apex/bmcservicedesk__ssredirect?type=sr%26id=a3S0J0000026ANVUA2)"
+
 Installing packages via the official channels has the advantage that packages will be actively updated. However, it can take a while until the request is dealed with. In addition, this option is not reproducible. Major updates to a package can break code, rendering it effectively useless after a few years. For this reason, installing packages manually as described below is recommended<sup>1</sup>. 
 
 
