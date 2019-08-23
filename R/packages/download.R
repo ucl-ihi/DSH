@@ -16,8 +16,6 @@ if(!dir.exists(download_dir)){
   dir.create(download_dir)
 }
 
-#install.packages(required_pckgs, destdir = download_dir)
-
 
 
 # Compile the dependencies to determine install order ---------------------
