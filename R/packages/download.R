@@ -1,16 +1,12 @@
 
 R_version <- "3.6.1"
 snapshot_date <- "2019-08-23"
-required_pckgs <- c("tidyverse", "data.table", # Data
-                    "knitr", "odbc",   # Infrastructure
-                    "gridExtra", "ggpubr", "ggrepel", "ggthemes", "ggforce", "ggmosaic", 
-                    "rstan", "glmmTMB", "caret") # Modelling 
+required_pckgs <- c("[PACKAGE NAMES]") 
 download_dir <- paste("pckgs", R_version, snapshot_date, sep = "_")
 
 
 
 # Set the correct CRAN mirror and download --------------------------------
-
 
 checkpoint::checkpoint(snapshot_date, checkpointLocation = ".", 
                        use.knitr = FALSE, auto.install.knitr = FALSE)
