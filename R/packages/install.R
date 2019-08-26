@@ -39,7 +39,7 @@ install_pckg <- function(pckg){
   
   installed <- installed.packages(lib.loc = local_dir)
   
-  if(pckg %in% names(depends) & !pckg %in% installed){
+  if(pckg %in% names(depends) & !pckg %in% row.names(installed)){
     for(dep_pckg in depends[[pckg]]){
       install_pckg(dep_pckg)
     }
