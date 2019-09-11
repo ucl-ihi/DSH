@@ -45,6 +45,16 @@ Installing all dependencies of a package manually can quickly become tedious. To
 
 The scripts *download.R* and *install.R* are scripts meant to help with this by automatically downloading all dependencies of a package outside of the DSH, finding the right order they need to be installed, and then using the downloaded files and the dependency order to install the package within the DSH. 
 
+**Download**
+
+You can use *download.R* outside of DSH (e.g. on your own laptop or PC) to automatically download the source of the required package as well as any necessary dependencies. In order to do so, there are four bits of information that you need to provide before running the script, all of which can be set at the beginning of the script:
+
+* `R_version`: This variable contains the R version, for which the code should be downloaded, as a string. For example, in order to download packages that work with the current DSH R version 3.6.1, this variable needs to be initialised with `R_version <- "3.6.1"`
+* `snapshot_date`: In addition to the R version, the script also allows/requires you to set a snapshot date. Only package versions that existed at the time of the snapshot will be downloaded, ensuring you that your code in the DSH will never break due to unexpected updates of packages. Dates should also be set as strings in the format `snapshot_date <- "2019-08-03"`.
+* `required_pckgs`: This variable is a character vector containing the names of all packages you wish to download. This does not have to include any dependencies, which will be determined automatically. For example, if you wish to download tidyverse and data.table, simply set this variable to `required_pckgs <- c("tidyverse", "data.table")`.
+* `download_dir`: Finally, this variable needs to provide a valid path to a directory in which you want to download the packages. In order to download the packages into the current working directory, simply initialise this variable with `download_dir <- "."`
+
+
 **TODO:** Describe how to use the functions 
 
 
