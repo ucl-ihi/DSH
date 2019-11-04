@@ -50,9 +50,9 @@ install_pckg <- function(pckg){
       stop(paste("More than one package were found:", paste(src, collapse = ", ")))
     } else if (length(src) == 1){
       if(grepl(x = src, "\\.zip$")){
-        install.packages(file.path(src_dir, src), repos = NULL, type = "win.binary")
+        install.packages(file.path(src_dir, src), lib = local_dir, repos = NULL, type = "win.binary")
       } else if (grepl(x = src, "\\.tar\\.gz$")) {
-        install.packages(file.path(src_dir, src), repos = NULL, type = "source")
+        install.packages(file.path(src_dir, src), lib = local_dir, repos = NULL, type = "source")
       }
     }
   }
