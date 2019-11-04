@@ -1,4 +1,3 @@
-# README
 # Install R packages within the Data Safe Haven 
 
 The Data Safe Haven does not have access to a CRAN mirror, the most common method to install R packages. For this reason, calling `install.packages("dplyr")` will not work, making it tedious to install new packages in the DSH environment. A number of R packages are preinstalled but many commonly used packages are still missing. 
@@ -45,7 +44,24 @@ Installing all dependencies of a package manually can quickly become tedious. To
 
 The scripts *download.R* and *install.R* are scripts meant to help with this by automatically downloading all dependencies of a package outside of the DSH, finding the right order they need to be installed, and then using the downloaded files and the dependency order to install the package within the DSH. 
 
-**TODO:** Describe how to use the functions 
+**Download**
+
+You can use *download.R* outside of DSH (e.g. on your own laptop or PC) to automatically download the source of the required package as well as any necessary dependencies. In order to do so, there are four bits of information that you need to provide before running the script, all of which can be set at the beginning of the script:
+
+* `R_version`: This variable contains the R version, for which the code should be downloaded, as a string. For example, in order to download packages that work with the current DSH R version 3.6.1, this variable needs to be initialised with `R_version <- "3.6.1"`
+* `snapshot_date`: In addition to the R version, the script also allows/requires you to set a snapshot date. Only package versions that existed at the time of the snapshot will be downloaded, ensuring you that your code in the DSH will never break due to unexpected updates of packages. Dates should also be set as strings in the format `snapshot_date <- "2019-08-03"`.
+* `required_pckgs`: This variable is a character vector containing the names of all packages you wish to download. This does not have to include any dependencies, which will be determined automatically. For example, if you wish to download tidyverse and data.table, simply set this variable to `required_pckgs <- c("tidyverse", "data.table")`.
+* `download_dir`: Finally, this variable needs to provide a valid path to a directory in which you want to download the packages. In order to download the packages into the current working directory, simply initialise this variable with `download_dir <- "."`
+
+**Install**
+
+Once all packages have been downloaded via *download.R*, simply zip the folder specified in `download_dir` and upload them via the [DSH file transfer portal](https://filetransfer.idhs.ucl.ac.uk/webclient/Login.xhtml) together with the `install.R` script. Inside DSH, unpack the zip file and set the parameters in `install.R`.
+
+* `R_version, snapshot_date, required_pckgs`: These should be set to the same values used during download (described above).
+* `local_dir`: The path to the folder in which to install the packages. It should be noted here that DSH users do not have writting privileges on the DSH's default R package folders. Instead, I would recommend to create a folder `packages` in the root folder of each project, in which all packages necessary for the project are installed. This folder should then be passed to `local_dir`.
+* `path_to_src`: This too is a string containing a path, this time to the unzipped package sources.
+
+After the parameters have been set correctly, simply run `install.R` and all packages should be installed into `local_dir`. The last remaining step is to tell R and RStudio to look for packages in `local_dir` instead of the systems library. This can be done by running `.libPaths("[REPLACE_WITH_PATH_TO_LOCAL_DIR]")` everytime you start R. This can be automated by placing the command in a `.Rprofile` file in the root folder of your RStudio project. This works because RStudio searches for a file called `.Rprofile` at startup and runs any code that is included in the file.
 
 
 **Authors:**
